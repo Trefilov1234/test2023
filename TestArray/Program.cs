@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestArray.Entities;
 
 namespace TestArray
 {
@@ -12,9 +13,9 @@ namespace TestArray
         private static readonly Random Random = new Random();
         static void Main(string[] args)
         {
-            var array = Enumerable.Range(0, NumberCount).Select(_=>Random.Next(10)).ToArray();
-            array = array.OrderBy(x => x).ToArray();
-            Console.WriteLine(string.Join(" ", array.Select(x => x.ToString()).ToArray()));
+            var array = Enumerable.Range(0, NumberCount).Select(_=>new Item { Number = Random.Next(10) }).ToArray();
+            array = array.OrderBy(x => x.Number).ToArray();
+            Console.WriteLine(string.Join(", ", array.Select(i=>$"{i.Number} - {i.Value}")));
         }
     }
 }
